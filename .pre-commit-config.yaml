@@ -1,0 +1,10 @@
+# Secret check before every commit. Activate it once per clone with: pre-commit install
+# Needs gitleaks on the computer (Mac: brew install gitleaks). Without it, commits fail instead of going through unchecked.
+repos:
+  - repo: local
+    hooks:
+      - id: gitleaks
+        name: gitleaks (blocks commits that contain secrets)
+        entry: gitleaks git --pre-commit --redact --staged --verbose
+        language: system
+        pass_filenames: false
